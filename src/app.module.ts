@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ThrottlerModule } from '@nestjs/throttler';
-import { APP_PIPE } from '@nestjs/core';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { APP_GUARD, APP_PIPE } from '@nestjs/core';
 import { ValidationPipe } from './pipes/validation-pipe';
 import { BullModule } from '@nestjs/bullmq';
 import { NotificationModule } from './notification/notification.module';
@@ -31,6 +31,10 @@ import { NotificationModule } from './notification/notification.module';
     {
       provide: APP_PIPE,
       useClass: ValidationPipe,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
     },
   
   ],
