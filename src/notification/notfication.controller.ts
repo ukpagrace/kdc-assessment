@@ -25,9 +25,4 @@ export class NotficationController {
     return await this.notificationService.getUserNotifications(id);
   }
 
-
-
-
-
-
 }
